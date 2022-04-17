@@ -130,18 +130,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -187,7 +187,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/15/nohup&/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/17/sort_go/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/photo.jpg">
@@ -205,7 +205,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/15/nohup&/" class="post-title-link" itemprop="url">nohup、& 以及收集pid</a>
+          <a href="/2022/04/17/sort_go/" class="post-title-link" itemprop="url">Golang package sort</a>
         </h2>
 
         <div class="post-meta-container">
@@ -217,7 +217,202 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-03-15 22:14:53 / Modified: 22:46:21" itemprop="dateCreated datePublished" datetime="2022-03-15T22:14:53+08:00">2022-03-15</time>
+      <time title="Created: 2022-04-17 19:00:09 / Modified: 19:13:55" itemprop="dateCreated datePublished" datetime="2022-04-17T19:00:09+08:00">2022-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Golang/" itemprop="url" rel="index"><span itemprop="name">Golang</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Golang/package/" itemprop="url" rel="index"><span itemprop="name">package</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Golang/package/sort/" itemprop="url" rel="index"><span itemprop="name">sort</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><h3 id="int"><a href="#int" class="headerlink" title="int"></a>int</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a := []<span class="type">int</span>&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>&#125;</span><br><span class="line">sort.Ints(a)</span><br></pre></td></tr></table></figure>
+
+<h3 id="float64"><a href="#float64" class="headerlink" title="float64"></a>float64</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b := []<span class="type">float64</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">sort.Float64s(b)</span><br></pre></td></tr></table></figure>
+
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c := []<span class="type">string</span>&#123;<span class="string">&quot;111&quot;</span>,<span class="string">&quot;222&quot;</span>,<span class="string">&quot;333&quot;</span>,<span class="string">&quot;444&quot;</span>&#125;</span><br><span class="line">sort.Strings(c)</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义结构体"><a href="#自定义结构体" class="headerlink" title="自定义结构体"></a>自定义结构体</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> stu <span class="keyword">struct</span> &#123;</span><br><span class="line">    name <span class="type">string</span></span><br><span class="line">    age  <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    a := []stu&#123;</span><br><span class="line">        &#123;name: <span class="string">&quot;aa&quot;</span>, age: <span class="number">10</span>&#125;,</span><br><span class="line">        &#123;name: <span class="string">&quot;bb&quot;</span>, age: <span class="number">5</span>&#125;,</span><br><span class="line">        &#123;name: <span class="string">&quot;cc&quot;</span>, age: <span class="number">15</span>&#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sort.Slice(a, <span class="function"><span class="keyword">func</span><span class="params">(i, j <span class="type">int</span>)</span></span> <span class="type">bool</span> &#123; <span class="keyword">return</span> a[i].age &lt; a[j].age &#125;)</span><br><span class="line"></span><br><span class="line">    fmt.Println(a)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/photo.jpg">
+      <meta itemprop="name" content="ZhengW">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhengW">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | ZhengW">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">设计模式-读书笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-24 10:47:13" itemprop="dateCreated datePublished" datetime="2022-03-24T10:47:13+08:00">2022-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="从哪些维度判断代码质量的好坏？如何具备写出高质量代码的能力？"><a href="#从哪些维度判断代码质量的好坏？如何具备写出高质量代码的能力？" class="headerlink" title="从哪些维度判断代码质量的好坏？如何具备写出高质量代码的能力？"></a>从哪些维度判断代码质量的好坏？如何具备写出高质量代码的能力？</h1><h2 id="如何评价代码质量的高低"><a href="#如何评价代码质量的高低" class="headerlink" title="如何评价代码质量的高低"></a>如何评价代码质量的高低</h2><p>代码质量的评价有很强的主观性，描述代码质量的词汇也有很多，比如可读性、可维护性、灵活、优雅、简洁等，这些词汇是从不同的维度去评价代码质量的。它们之间有互相作用，并不是独立的，比如，代码的可读性好、可扩展性好就意味着代码的可维护性好。</p>
+<p>代码质量高低是一个综合各种因素得到的结论。我们并不能通过单一的维度去评价一段代码的好坏。</p>
+<h2 id="最常用的评价标准有哪几个？"><a href="#最常用的评价标准有哪几个？" class="headerlink" title="最常用的评价标准有哪几个？"></a>最常用的评价标准有哪几个？</h2><h3 id="可维护性（maintainability）"><a href="#可维护性（maintainability）" class="headerlink" title="可维护性（maintainability）"></a>可维护性（maintainability）</h3><p>代码质量的评价有很强的主观性。</p>
+<ul>
+<li>维护：修改 bug、修改老的代码、添加新的代码之类的工作。</li>
+<li>代码易维护：在不破坏原有代码设计、不引入新的 bug 的情况下，能够快速地修改或者添加代码。</li>
+<li>代码不易维护：修改或者添加代码需要冒着极大的引入新 bug 的风险，并且需要花费很长的时间才能完成。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">从侧面上给出一个比较主观但又比较准确的感受：</span><br><span class="line">    如果 bug 容易修复，修改、添加功能能够轻松完成，那我们就可以主观地认为代码对我们说易维护。</span><br><span class="line">    相反，如果修改一个 bug，修改、添加一个功能，需要花费很长的时间，那我们就可以主观地认为代码对我们来说不易维护。</span><br></pre></td></tr></table></figure>
+
+<h3 id="可读性（readability）"><a href="#可读性（readability）" class="headerlink" title="可读性（readability）"></a>可读性（readability）</h3><p><code>Any fool can write code that a computercan understand.  Good programmers write code that humans can understand.</code></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我们在编写代码的时候，时刻要考虑到代码是否易读、易理解。</span><br><span class="line">除此之外，代码的可读性在非常大程度上会影响代码的可维护性。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>我们需要看代码是否符合编码规范、命名是否达意、注释是否详尽、函数是否长短合适、模块划分是否清晰、是否符合高内聚低耦合等等。</p>
+</li>
+<li><p>code review 是一个很好的测验代码可读性的手段。</p>
+</li>
+</ul>
+<h3 id="可扩展性-extensibility"><a href="#可扩展性-extensibility" class="headerlink" title="可扩展性(extensibility)"></a>可扩展性(extensibility)</h3><p>代码的可扩展性表示，我们在不修改或少量修改原有代码的情况下，通过扩展的方式添加新的功能代码。<br>说直白点就是，代码预留了一些功能扩展点，你可以把新功能代码，直接插到扩展点上，而不需要因为要添加一个功能而大动干戈，改动大量的原始代码。</p>
+<h3 id="灵活性-flexibility"><a href="#灵活性-flexibility" class="headerlink" title="灵活性(flexibility)"></a>灵活性(flexibility)</h3><h3 id="简洁性"><a href="#简洁性" class="headerlink" title="简洁性"></a>简洁性</h3><h3 id="可复用性"><a href="#可复用性" class="headerlink" title="可复用性"></a>可复用性</h3><h3 id="可测试性"><a href="#可测试性" class="headerlink" title="可测试性"></a>可测试性</h3><h2 id="如何才能写出高质量的代码？"><a href="#如何才能写出高质量的代码？" class="headerlink" title="如何才能写出高质量的代码？"></a>如何才能写出高质量的代码？</h2><p>要写出高质量代码，我们就需要掌握一些更加细化、更加能落地的编程方法论，这就包含面向对象设计思想、设计原则、设计模式、编码规范、重构技巧等等，</p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p>设计模式：面向对象软件的设计经验，是通常设计问题的解决方案。每一种设计模式系统的命名、解释和评价了面向对象中一个重要的和重复出现的设计</p>
+<h2 id="创建型（用来帮助我们创建对象）"><a href="#创建型（用来帮助我们创建对象）" class="headerlink" title="创建型（用来帮助我们创建对象）"></a>创建型（用来帮助我们创建对象）</h2><p>常用：单例模式，工厂模式（工厂和抽象工厂），建造者模式<br>不常用：原型模式</p>
+<h2 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h2><p>常用：代理模式，桥接模式，装饰者模式，适配器模式<br>不常用：门面模式，组合模式，享元模式</p>
+<h2 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h2><p>常用：观察者模式，模板模式，策略模式，职责链模式，迭代器模式，状态模式<br>不常用：访问者模式，备忘录模式，命令模式，解释器模式，中介模式</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/24/nohup&/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/photo.jpg">
+      <meta itemprop="name" content="ZhengW">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhengW">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | ZhengW">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/24/nohup&/" class="post-title-link" itemprop="url">nohup、& 以及收集pid</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-24 10:47:13" itemprop="dateCreated datePublished" datetime="2022-03-24T10:47:13+08:00">2022-03-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -243,17 +438,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>英文名： <code>no hang up</code></p>
+          <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>英文名： <code>no hang up</code></p>
 <p>用于在系统后台不挂断地运行命令，退出终端不会影响程序的运行。</p>
 <p><code>nohup</code> 命令，在默认情况下（非重定向时），会输出一个名叫 <code>nohup.out</code> 的文件到当前目录下，如果当前目录的 <code>nohup.out</code> 文件不可写，输出重定向到 <code>$HOME/nohup.out</code> 文件中。</p>
-<h2 id="Syntax-Format"><a href="#Syntax-Format" class="headerlink" title="Syntax Format"></a>Syntax Format</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">nohup</span> Command [ Arg … ] [　&amp; ]</span><br></pre></td></tr></table></figure>
+<h1 id="Syntax-Format"><a href="#Syntax-Format" class="headerlink" title="Syntax Format"></a>Syntax Format</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">nohup</span> Command [ Arg … ] [　&amp; ]</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Command：要执行的命令。</li>
 <li>Arg：一些参数，可以指定输出文件。</li>
 <li>&amp;：让命令在后台执行，终端退出后命令仍旧执行。</li>
 </ul>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><h3 id="追加与重定向-gt-gt-gt"><a href="#追加与重定向-gt-gt-gt" class="headerlink" title="追加与重定向(&gt;, &gt;&gt;)"></a>追加与重定向(<code>&gt;, &gt;&gt;</code>)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">nohup</span> python3 -u FTX_mongo.py -p <span class="variable">$product</span> 2&gt;&amp;1 &gt;&gt;output.txt &amp; </span><br><span class="line">$ <span class="built_in">nohup</span> python3 -u FTX_mongo.py -p <span class="variable">$product</span> 2&gt;&amp;1 &gt;output.txt &amp; </span><br></pre></td></tr></table></figure>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><h2 id="追加与重定向-gt-gt-gt"><a href="#追加与重定向-gt-gt-gt" class="headerlink" title="追加与重定向(&gt;, &gt;&gt;)"></a>追加与重定向(<code>&gt;, &gt;&gt;</code>)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">nohup</span> python3 -u FTX_mongo.py -p <span class="variable">$product</span> 2&gt;&amp;1 &gt;&gt;output.txt &amp; </span><br><span class="line">$ <span class="built_in">nohup</span> python3 -u FTX_mongo.py -p <span class="variable">$product</span> 2&gt;&amp;1 &gt;output.txt &amp; </span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p><code>2&gt;&amp;1</code>将标准错误 2 重定向到标准输出 &amp;1 ，标准输出 &amp;1 再被重定向输入到 <code>output.txt</code> 文件中。</p>
@@ -267,15 +462,114 @@
 </ul>
 </li>
 </ul>
-<h3 id="收集pid"><a href="#收集pid" class="headerlink" title="收集pid($!)"></a>收集pid(<code>$!</code>)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> product <span class="keyword">in</span> <span class="variable">$&#123;products[@]&#125;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="comment"># echo $product</span></span><br><span class="line">    <span class="comment"># nohup python3 -u FTX_mongo.py -p $product 2&gt;&amp;1 &gt;&gt;output.txt | xargs &gt;&gt; pid.txt &amp;</span></span><br><span class="line">    <span class="built_in">nohup</span> python3 -u FTX_mongo.py -p <span class="variable">$product</span> 2&gt;&amp;1 &gt;&gt;output.txt &amp; </span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$product</span> $!&quot;</span> &gt;&gt; pid.txt</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h2 id="收集pid"><a href="#收集pid" class="headerlink" title="收集pid($!)"></a>收集pid(<code>$!</code>)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> product <span class="keyword">in</span> <span class="variable">$&#123;products[@]&#125;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="comment"># echo $product</span></span><br><span class="line">    <span class="comment"># nohup python3 -u FTX_mongo.py -p $product 2&gt;&amp;1 &gt;&gt;output.txt | xargs &gt;&gt; pid.txt &amp;</span></span><br><span class="line">    <span class="built_in">nohup</span> python3 -u FTX_mongo.py -p <span class="variable">$product</span> 2&gt;&amp;1 &gt;&gt;output.txt &amp; </span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$product</span> $!&quot;</span> &gt;&gt; pid.txt</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/03/15/nohup&/#more" rel="contents">
+              <a class="btn" href="/2022/03/24/nohup&/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/24/%E5%80%BC%E4%BC%A0%E9%80%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/photo.jpg">
+      <meta itemprop="name" content="ZhengW">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhengW">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | ZhengW">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/24/%E5%80%BC%E4%BC%A0%E9%80%92/" class="post-title-link" itemprop="url">值传递，指针传递，引用传递</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-24 10:47:13" itemprop="dateCreated datePublished" datetime="2022-03-24T10:47:13+08:00">2022-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Go/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">语言特性</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Go/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">值类型和引用类型</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="值传递"><a href="#值传递" class="headerlink" title="值传递"></a>值传递</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a <span class="type">int</span> = <span class="number">1</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;%p\n&quot;</span>, &amp;a)</span><br><span class="line">	repo(a)</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">repo</span><span class="params">(val <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%p\n&quot;</span>, &amp;val)</span><br><span class="line">	val = <span class="number">2</span></span><br><span class="line">	fmt.Println(val)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 0xc0000b2008</span></span><br><span class="line"><span class="comment">// 0xc0000b2020</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="指针传递"><a href="#指针传递" class="headerlink" title="指针传递"></a>指针传递</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a <span class="type">int</span> = <span class="number">1</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;%p\n&quot;</span>, &amp;a)</span><br><span class="line">	repo(&amp;a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">repo</span><span class="params">(val *<span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%p\n&quot;</span>, &amp;val)</span><br><span class="line">	*val = <span class="number">2</span></span><br><span class="line">	fmt.Println(val)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 0xc000014080</span></span><br><span class="line"><span class="comment">// 0xc00000e030</span></span><br><span class="line"><span class="comment">// 0xc000014080</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="引用传递"><a href="#引用传递" class="headerlink" title="引用传递"></a>引用传递</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void rFoo(<span class="type">int</span> &amp; ref) &#123;</span><br><span class="line">    printf(<span class="string">&quot;%p\n&quot;</span>, &amp;ref);<span class="comment">// 0x7ffee5aef768</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> main() &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    printf(<span class="string">&quot;%p\n&quot;</span>, &amp;a);<span class="comment">// 0x7ffee7307768</span></span><br><span class="line">    <span class="type">int</span> &amp; b = a;</span><br><span class="line">    printf(<span class="string">&quot;%p\n&quot;</span>, &amp;b);<span class="comment">// 0x7ffee5aef768</span></span><br><span class="line">    rFoo(b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">source: https:<span class="comment">//studygolang.com/articles/13165/comment/16523</span></span><br><span class="line"><span class="comment">// 这里 b 是 a 的别名，因此a、b必定具备相同的地址。</span></span><br><span class="line"><span class="comment">// 那么按照引用传递的定义，实参 b 传给形参 ref 之后，ref 将是 b 的别名（也即a、b、ref都是同一个变量），他们将拥有相同地址。</span></span><br><span class="line"><span class="comment">// 通过在 rFoo 函数中的打印信息，可以看到三者具有完全形同的地址，这是所谓的引用传递。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="引用类型（slice，map，channel）"><a href="#引用类型（slice，map，channel）" class="headerlink" title="引用类型（slice，map，channel）"></a>引用类型（slice，map，channel）</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	mp := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>, <span class="number">10</span>)</span><br><span class="line">	s := []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line">	fmt.Println(unsafe.Sizeof(mp)) <span class="comment">// 8</span></span><br><span class="line">	fmt.Println(unsafe.Sizeof(s))  <span class="comment">// 24</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><code>go中只有值传递</code></li>
+<li>当向函数中传递slice时，是将slice的结构体复制了一下，传递了过去。因为复制的同时，将底层数组的地址传递了过去，所以我们在函数中修改会影响原来的slice。</li>
+<li>slice就是一个结构体，map和channel就是存储了hmap，hchan 结构体的地址，当我们直接传递参数的时候，都是发生的值传递</li>
+</ul>
+<h2 id="小伙伴golang-nuts的回复原文"><a href="#小伙伴golang-nuts的回复原文" class="headerlink" title="小伙伴golang.nuts的回复原文"></a>小伙伴golang.nuts的回复原文</h2><p><a target="_blank" rel="noopener" href="https://groups.google.com/g/golang-nuts/c/Q7_Dj_ogVJE">https://groups.google.com/g/golang-nuts/c/Q7_Dj_ogVJE</a></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">I think you have understood the issue well. </span><br><span class="line">From the source code at https:<span class="comment">//golang.org/src/runtime/slice.go :</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> slice <span class="keyword">struct</span> &#123;</span><br><span class="line">        array unsafe.Pointer</span><br><span class="line">        <span class="built_in">len</span>   <span class="type">int</span></span><br><span class="line">        <span class="built_in">cap</span>   <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">As you have found, this is passed by value.  </span><br><span class="line">You can of course pass a pointer to such a value explicitly, <span class="keyword">if</span> you choose.</span><br><span class="line"></span><br><span class="line">&gt; Is it a trap?!</span><br><span class="line"></span><br><span class="line">Well, it<span class="string">&#x27;s something you have to learn about the language, </span></span><br><span class="line"><span class="string">but I think it&#x27;</span>s the best choice out of the design options which were available.</span><br><span class="line"></span><br><span class="line">Strings and slices are consistent with each other: </span><br><span class="line">they are plain structs, containing pointer to data, length, and (<span class="keyword">for</span> slices) capacity.</span><br><span class="line"></span><br><span class="line">Could slices and strings have been implemented so that their value is always a *pointer* to a structure? </span><br><span class="line">I guess so, but I think you would still end up with a similar problem at a deeper level. </span><br><span class="line">When you <span class="built_in">copy</span> a slice (b := a), or pass it as a function argument, then you<span class="string">&#x27;d be copying a pointer, </span></span><br><span class="line"><span class="string">so you&#x27;</span>d have two aliases to the same slice, and modifications to one would be visible to the other. </span><br><span class="line">But when you sub-slice (b := a[<span class="number">1</span>:<span class="number">2</span>]) then you<span class="string">&#x27;d be forced to allocate a new slice structure.  </span></span><br><span class="line"><span class="string">The behaviour of a slice therefore would be dependent on exactly how it was generated, </span></span><br><span class="line"><span class="string">and so mutating a slice *may or may not* affect other slices. I think would be more confusing overall.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">On top of that, you&#x27;</span>d still have the same problem which you have today: </span><br><span class="line">two slices *may or may not* share the same underlying buffer.</span><br><span class="line"></span><br><span class="line">Maps and channels are consistent with each other: they have a large data structure, </span><br><span class="line">and the value is a pointer to that structure.  </span><br><span class="line">I think there is a very good reason <span class="keyword">for</span> making <span class="keyword">map</span> values be pointers; </span><br><span class="line">it means you can do convenient things like</span><br><span class="line">    m[<span class="string">&quot;foo&quot;</span>] = <span class="string">&quot;bar&quot;</span></span><br><span class="line">instead of</span><br><span class="line">    m = m.set(<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>)    <span class="comment">// compare: s = append(s, &quot;foo&quot;)</span></span><br><span class="line"></span><br><span class="line">But on the flip side, the zero value of a <span class="keyword">map</span> or channel is not very useful: </span><br><span class="line">it<span class="string">&#x27;s a nil pointer, which tells you that have zero elements, </span></span><br><span class="line"><span class="string">but you cannot add any elements.  </span></span><br><span class="line"><span class="string">This makes them inconvenient when building a structure which contains these things, </span></span><br><span class="line"><span class="string">because you need to make(...) the values explicitly.  </span></span><br><span class="line"><span class="string">This is something else that newcomers to Go have been known to complain about.</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
